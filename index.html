@@ -22,6 +22,10 @@
     line-height: 1.8;
   }
   .serif-en { font-family: "Cormorant Garamond", Georgia, serif; }
+  .ic { width: 1em; height: 1em; vertical-align: -0.12em; }
+  .ic-line { width: 24px; height: 24px; }
+  .qcard.back .ic { width: 34px; height: 34px; color: var(--amber); filter: drop-shadow(0 0 12px rgba(232,169,76,.45)); }
+  .moon-stamp .ic { width: 18px; height: 18px; }
   a { color: inherit; text-decoration: none; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
@@ -176,7 +180,7 @@
 <div class="wrap">
   <nav>
     <a class="logo serif-en" href="#">
-      <span class="moon">🌙</span>Fukabori <small>フカボリ</small>
+      <svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Fukabori <small>フカボリ</small>
     </a>
     <div class="links">
       <a href="#features">特徴</a>
@@ -206,8 +210,8 @@
       </div>
     </div>
     <div class="stage" aria-hidden="true">
-      <div class="qcard back b1"><span class="moon">☽</span><span class="name serif-en">Fukabori</span></div>
-      <div class="qcard back b2"><span class="moon">☽</span><span class="name serif-en">Fukabori</span></div>
+      <div class="qcard back b1"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="name serif-en">Fukabori</span></div>
+      <div class="qcard back b2"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="name serif-en">Fukabori</span></div>
       <div class="qcard paper">
         <div class="level"><i></i>あさい（カジュアル）</div>
         <div class="q">わたしの第一印象、<br>正直どうだった？</div>
@@ -245,25 +249,25 @@
     <div class="grid3">
       <div class="deck-card">
         <span class="free">FREE</span>
-        <div class="icon" style="background: var(--rose);">♡</div>
+        <div class="icon" style="background: var(--rose);"><svg class="ic-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.5-1.4 3-3.1 3-5.2A5.3 5.3 0 0 0 16.7 3c-1.9 0-3.2.9-4.7 2.6C10.5 3.9 9.2 3 7.3 3A5.3 5.3 0 0 0 2 8.8c0 2.1 1.5 3.8 3 5.2l7 6.8z"/></svg></div>
         <h3>カップル</h3><p>答えるたび、近くなる。全50問・4段階のふかさ。</p>
-        <span class="moon-stamp">☽</span>
+        <span class="moon-stamp"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
       </div>
       <div class="deck-card">
         <span class="free">FREE</span>
-        <div class="icon" style="background: var(--blue);">🍷</div>
+        <div class="icon" style="background: var(--blue);"><svg class="ic-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><path d="M8 22h8M12 15v7M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/></svg></div>
         <h3>友達</h3><p>いつメンの、知らない顔。飲み会が語り場になる20問。</p>
-        <span class="moon-stamp">☽</span>
+        <span class="moon-stamp"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
       </div>
       <div class="deck-card">
         <span class="free">FREE</span>
-        <div class="icon" style="background: var(--green);">🪑</div>
+        <div class="icon" style="background: var(--green);"><svg class="ic-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"/><path d="M5 18v2M19 18v2"/></svg></div>
         <h3>自分と</h3><p>5分の、ひとり会議。自分を整える20問。</p>
-        <span class="moon-stamp">☽</span>
+        <span class="moon-stamp"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
       </div>
     </div>
     <p class="paid-note">
-      さらに <b>夜ふたりで（18+）</b>・<b>同棲前会議</b>・<b>失恋</b> の追加デッキも。プレミアムなら全デッキ使い放題。
+      追加デッキ <b>夜ふたりで（18+）</b>・<b>同棲前会議</b>・<b>失恋</b> も、<b>冒頭15問は無料</b>。気に入ったら買い切りかプレミアムで。
     </p>
   </div>
 </section>
@@ -281,7 +285,7 @@
       <div class="panel price-card">
         <div class="name">有料デッキ（買い切り）</div>
         <div class="price">¥480〜</div>
-        <div class="per">1デッキごと</div>
+        <div class="per">1デッキごと・冒頭15問は無料</div>
         <ul><li>夜ふたりで ¥730</li><li>同棲前会議 ¥610</li><li>失恋 ¥480</li></ul>
       </div>
       <div class="panel price-card featured">
@@ -305,7 +309,7 @@
 
 <div class="wrap">
   <footer>
-    <span class="serif-en" style="color: var(--amber);">🌙 Fukabori</span>
+    <span class="serif-en" style="color: var(--amber);"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg> Fukabori</span>
     <div class="links">
       <a href="./legal/terms.html">利用規約</a>
       <a href="./legal/privacy.html">プライバシーポリシー</a>
