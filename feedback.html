@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ご意見・リクエスト — Fukabori（フカボリ）</title>
+<meta name="description" content="Fukabori に欲しいデッキやカードの改善案を送るフォームです。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1420; --surface: #1A2130;
+    --amber: #E8A94C;
+    --text: #F2EFEA; --text2: #8B93A5;
+    --danger: #C0707C; --ok: #6F9B7E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+    line-height: 1.8;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(560px 420px at 85% 0%, rgba(232,169,76,.13), transparent 70%),
+      radial-gradient(420px 380px at 8% 100%, rgba(232,169,76,.06), transparent 70%);
+  }
+  .wrap { max-width: 620px; margin: 0 auto; padding: 0 24px 72px; }
+  a { color: var(--amber); }
+
+  header { padding: 30px 0 8px; }
+  .logo {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: var(--amber); font-size: 20px;
+    font-family: "Cormorant Garamond", Georgia, serif;
+  }
+  .logo small { color: var(--text2); font-size: 10px; letter-spacing: 3px; }
+
+  h1 { font-size: 27px; font-weight: 700; letter-spacing: 1px; margin-top: 34px; }
+  .lead { color: var(--text2); font-size: 14px; margin-top: 12px; }
+
+  form { margin-top: 34px; display: flex; flex-direction: column; gap: 26px; }
+  fieldset { border: 0; }
+  legend, label.head {
+    display: block; font-size: 13px; font-weight: 600;
+    letter-spacing: 1px; margin-bottom: 12px;
+  }
+  .opt { color: var(--text2); font-weight: 400; margin-left: 6px; font-size: 12px; }
+
+  .kinds { display: flex; flex-direction: column; gap: 9px; }
+  .kinds label {
+    display: flex; align-items: flex-start; gap: 11px;
+    padding: 14px 16px; cursor: pointer;
+    background: rgba(26,33,48,.55);
+    border: 1px solid rgba(255,255,255,.07); border-radius: 14px;
+    font-size: 14px; transition: border-color .18s, background .18s;
+  }
+  .kinds label:hover { border-color: rgba(232,169,76,.3); }
+  .kinds input { accent-color: var(--amber); margin-top: 7px; flex: none; }
+  .kinds input:checked ~ span { color: var(--amber); }
+  .kinds label:has(input:checked) {
+    border-color: rgba(232,169,76,.5); background: rgba(232,169,76,.07);
+  }
+  .kinds .note { display: block; color: var(--text2); font-size: 12px; margin-top: 1px; }
+
+  textarea, input[type=email] {
+    width: 100%; padding: 15px 16px;
+    background: rgba(20,26,40,.75); color: var(--text);
+    border: 1px solid rgba(255,255,255,.09); border-radius: 14px;
+    font-family: inherit; font-size: 15px; line-height: 1.8;
+    transition: border-color .18s;
+  }
+  textarea { min-height: 170px; resize: vertical; }
+  textarea:focus, input[type=email]:focus {
+    outline: none; border-color: rgba(232,169,76,.55);
+  }
+  .count { text-align: right; color: var(--text2); font-size: 11px; margin-top: 7px; }
+  .count.over { color: var(--danger); }
+
+  /* 人間には見せない。ボットが埋めたら弾く */
+  .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .ctx {
+    font-size: 12px; color: var(--text2);
+    background: rgba(26,33,48,.5); border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px; padding: 12px 15px;
+  }
+  .ctx b { color: var(--text); font-weight: 600; }
+
+  button {
+    padding: 16px 30px; border: 0; border-radius: 999px;
+    background: var(--amber); color: #231A0C;
+    font-family: inherit; font-size: 15px; font-weight: 600; letter-spacing: 1px;
+    cursor: pointer; transition: opacity .18s;
+  }
+  button:hover:not(:disabled) { opacity: .9; }
+  button:disabled { opacity: .45; cursor: default; }
+
+  .msg { font-size: 14px; padding: 15px 17px; border-radius: 14px; }
+  .msg.err { color: var(--danger); background: rgba(192,112,124,.1); border: 1px solid rgba(192,112,124,.3); }
+
+  .done { text-align: center; padding: 66px 0; }
+  .done h2 { font-size: 23px; font-weight: 700; letter-spacing: 1px; }
+  .done p { color: var(--text2); font-size: 14px; margin-top: 16px; }
+  .done .moon { color: var(--amber); font-size: 30px; }
+
+  footer { margin-top: 46px; color: var(--text2); font-size: 12px; }
+  footer a { color: var(--text2); text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="logo">☾ Fukabori <small>フカボリ</small></span>
+  </header>
+
+  <main id="main">
+    <h1>ご意見・リクエスト</h1>
+    <p class="lead">
+      欲しいデッキ、直したほうがいいカード、使っていて気になったこと。
+      どれでも構いません。ぜんぶ読んでいます。
+    </p>
+
+    <form id="form" novalidate>
+      <fieldset>
+        <legend>どれについてですか</legend>
+        <div class="kinds">
+          <label>
+            <input type="radio" name="kind" value="deck_request" checked>
+            <span>こんなデッキが欲しい
+              <span class="note">まだ無いテーマ。誰とどんな場面で使いたいかも書いてもらえると助かります</span>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="kind" value="card_improve">
+            <span>このカードを直してほしい
+              <span class="note">答えにくかった、意味が分かりにくかった、場が固まった質問など</span>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="kind" value="other">
+            <span>その他
+              <span class="note">不具合、使いにくいところ、感想</span>
+            </span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div>
+        <label class="head" for="body">内容</label>
+        <textarea id="body" name="body" maxlength="2000"
+                  placeholder="例：転職を考えている友人と話せるデッキが欲しいです。飲みながら、そこまで重くならずに。"></textarea>
+        <div class="count" id="count">0 / 2000</div>
+      </div>
+
+      <div>
+        <label class="head" for="contact">返信用のメールアドレス<span class="opt">任意</span></label>
+        <input type="email" id="contact" name="contact" maxlength="200"
+               placeholder="返信が必要なときだけ" autocomplete="email">
+      </div>
+
+      <div class="trap" aria-hidden="true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="ctx" id="ctx" hidden></div>
+      <div class="msg err" id="err" hidden></div>
+
+      <div><button type="submit" id="submit">送信する</button></div>
+    </form>
+  </main>
+
+  <footer>
+    <a href="./index.html">Fukabori について</a> ・
+    <a href="./legal/privacy.html">プライバシーポリシー</a>
+    <p style="margin-top:10px">
+      いただいた内容は、カードとデッキの改善のためだけに使います。
+      メールアドレスは返信以外に使いません。
+    </p>
+  </footer>
+</div>
+
+<script>
+  const ENDPOINT = "https://fukabori-feedback.shuuuya0616.workers.dev";
+
+  const form = document.getElementById("form");
+  const bodyEl = document.getElementById("body");
+  const countEl = document.getElementById("count");
+  const errEl = document.getElementById("err");
+  const submitEl = document.getElementById("submit");
+  const ctxEl = document.getElementById("ctx");
+
+  // アプリから ?deck=couple_v1&card=c081&v=1.0.0(4) で開かれたら文脈を拾う。
+  // どのカードの話か分かるだけで、直すときの手間がまるで変わる
+  const params = new URLSearchParams(location.search);
+  const ctx = {
+    deck_id: params.get("deck") || "",
+    card_id: params.get("card") || "",
+    app_version: params.get("v") || "",
+  };
+  if (ctx.deck_id || ctx.card_id) {
+    const deckName = params.get("deckname") || ctx.deck_id;
+    const question = params.get("q");
+    ctxEl.hidden = false;
+    ctxEl.innerHTML = question
+      ? `このカードについて送ります：<b>${escapeHTML(question)}</b>（${escapeHTML(deckName)}）`
+      : `<b>${escapeHTML(deckName)}</b> について送ります`;
+    if (ctx.card_id) {
+      form.querySelector('input[value="card_improve"]').checked = true;
+    }
+  }
+
+  function escapeHTML(s) {
+    return s.replace(/[&<>"']/g, (c) => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
+    ));
+  }
+
+  bodyEl.addEventListener("input", () => {
+    const n = bodyEl.value.length;
+    countEl.textContent = `${n} / 2000`;
+    countEl.classList.toggle("over", n > 2000);
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errEl.hidden = true;
+
+    const body = bodyEl.value.trim();
+    if (body.length < 4) {
+      show("内容をもう少し書いてもらえますか。");
+      bodyEl.focus();
+      return;
+    }
+
+    submitEl.disabled = true;
+    submitEl.textContent = "送信中…";
+
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kind: form.kind.value,
+          body,
+          contact: document.getElementById("contact").value.trim(),
+          website: document.getElementById("website").value,
+          ...ctx,
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || String(res.status));
+      }
+      done();
+    } catch (e) {
+      const map = {
+        rate_limited: "送信が続いたため、少し時間をおいてからお願いします。",
+        body_too_short: "内容をもう少し書いてもらえますか。",
+      };
+      show(map[e.message] || "送信できませんでした。通信環境を確かめて、もう一度お試しください。");
+      submitEl.disabled = false;
+      submitEl.textContent = "送信する";
+    }
+  });
+
+  function show(text) {
+    errEl.textContent = text;
+    errEl.hidden = false;
+  }
+
+  function done() {
+    document.getElementById("main").innerHTML = `
+      <div class="done">
+        <div class="moon">☾</div>
+        <h2>ありがとうございます</h2>
+        <p>いただいた内容は、ぜんぶ読んでいます。<br>
+           カードとデッキの改善に使わせてください。</p>
+        <p style="margin-top:26px"><a href="./index.html">Fukabori について見る</a></p>
+      </div>`;
+  }
+</script>
+</body>
+</html>
