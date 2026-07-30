@@ -177,7 +177,9 @@
   }
   .deck-strip {
     display: grid; grid-auto-flow: column; grid-auto-columns: 208px;
-    gap: 18px; overflow-x: auto; padding-bottom: 10px;
+    gap: 18px; overflow-x: auto;
+    /* hover で持ち上げるぶんの余白。無いと overflow に上端を切られる */
+    padding: 10px 2px 12px;
     scroll-snap-type: x proximity;
     scrollbar-width: thin; scrollbar-color: rgba(232,169,76,.3) transparent;
   }
@@ -272,12 +274,13 @@
         <span class="chip">オフラインでも使える</span>
       </div>
     </div>
-    <!-- アプリで実際に使っているカードの絵をそのまま置く。
-         CSSで似せた偽物より、本物のほうが強い -->
+    <!-- アプリの実画面から切り出した本物のカード。
+         カップルデッキの実際の質問と、そのデッキの裏面。
+         イラストではなく中身を見せたほうが、何のアプリか一目で伝わる -->
     <div class="stage" aria-hidden="true">
-      <img class="fan back left"  src="./img/app/onb_card_back.png"  alt="">
-      <img class="fan back right" src="./img/app/onb_card_back.png"  alt="">
-      <img class="fan front"      src="./img/app/onb_card_front.png" alt="">
+      <img class="fan back left"  src="./img/app/hero_card_back.png"  alt="">
+      <img class="fan back right" src="./img/app/hero_card_back.png"  alt="">
+      <img class="fan front"      src="./img/app/hero_card_front.png" alt="">
     </div>
   </div>
 </header>
@@ -309,9 +312,9 @@
   <div class="wrap">
     <h2>画面はこんな感じ</h2>
     <div class="screens">
-      <figure><img src="./img/app/screen_home.jpg" alt="デッキを選ぶ画面"><figcaption>今夜の相手と気分でデッキを選ぶ</figcaption></figure>
-      <figure><img src="./img/app/screen_pile.jpg" alt="カードの束"><figcaption>スマホを真ん中に置いて、1枚めくる</figcaption></figure>
-      <figure><img src="./img/app/screen_card.jpg" alt="質問カード"><figcaption>声に出して答える。いやなら飛ばしていい</figcaption></figure>
+      <figure><img src="./img/app/screen_home.jpg" alt="デッキを選ぶ画面" width="800" height="1738" loading="lazy" decoding="async"><figcaption>今夜の相手と気分でデッキを選ぶ</figcaption></figure>
+      <figure><img src="./img/app/screen_pile.jpg" alt="カードの束" width="800" height="1738" loading="lazy" decoding="async"><figcaption>スマホを真ん中に置いて、1枚めくる</figcaption></figure>
+      <figure><img src="./img/app/screen_card.jpg" alt="質問カード" width="800" height="1738" loading="lazy" decoding="async"><figcaption>声に出して答える。いやなら飛ばしていい</figcaption></figure>
     </div>
   </div>
 </section>
@@ -326,33 +329,33 @@
       <div class="shelf-row">
         <span class="shelf-label">ひとりの夜に</span>
         <div class="deck-strip">
-          <figure class="deck"><img src="./img/deck/self_v1.jpg" alt="セルフケア"><figcaption><b>セルフケア</b>がんばった日の、手当て。<span>87問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/breakup_v1.jpg" alt="失恋"><figcaption><b>失恋</b>ちゃんと痛んで、ちゃんと進む。<span>85問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/goals_v1.jpg" alt="目標と習慣"><figcaption><b>目標と習慣</b>決意を、続く形に。<span>89問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/shukatsu_v1.jpg" alt="自己分析"><figcaption><b>自己分析</b>語れる言葉に、変えていく。<span>88問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/thirties_v1.jpg" alt="30代の棚おろし"><figcaption><b>30代の棚おろし</b>気づけば、折り返し。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/self_v1.jpg" alt="セルフケア" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>セルフケア</b>がんばった日の、手当て。<span>87問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/breakup_v1.jpg" alt="失恋" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>失恋</b>ちゃんと痛んで、ちゃんと進む。<span>85問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/goals_v1.jpg" alt="目標と習慣" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>目標と習慣</b>決意を、続く形に。<span>89問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/shukatsu_v1.jpg" alt="自己分析" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>自己分析</b>語れる言葉に、変えていく。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/thirties_v1.jpg" alt="30代の棚おろし" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>30代の棚おろし</b>気づけば、折り返し。<span>88問</span></figcaption></figure>
         </div>
       </div>
 
       <div class="shelf-row">
         <span class="shelf-label">ふたりの時間</span>
         <div class="deck-strip">
-          <figure class="deck"><img src="./img/deck/couple_v1.jpg" alt="カップル"><figcaption><b>カップル</b>答えるたび、近くなる。<span>95問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/before_living_v1.jpg" alt="同棲前会議"><figcaption><b>同棲前会議</b>住む前に、ぜんぶ話そう。<span>88問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/marriage_v1.jpg" alt="結婚前会議"><figcaption><b>結婚前会議</b>決める前に、ぜんぶ話す。<span>88問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/money_v1.jpg" alt="お金の会議"><figcaption><b>お金の会議</b>言いにくい話は、カードに言わせる。<span>88問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/lifeplan_v1.jpg" alt="ふたりの人生設計"><figcaption><b>ふたりの人生設計</b>その選択、ふたりで決めたい。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/couple_v1.jpg" alt="カップル" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>カップル</b>答えるたび、近くなる。<span>95問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/before_living_v1.jpg" alt="同棲前会議" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>同棲前会議</b>住む前に、ぜんぶ話そう。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/marriage_v1.jpg" alt="結婚前会議" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>結婚前会議</b>決める前に、ぜんぶ話す。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/money_v1.jpg" alt="お金の会議" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>お金の会議</b>言いにくい話は、カードに言わせる。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/lifeplan_v1.jpg" alt="ふたりの人生設計" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>ふたりの人生設計</b>その選択、ふたりで決めたい。<span>88問</span></figcaption></figure>
         </div>
       </div>
 
       <div class="shelf-row">
         <span class="shelf-label">家族と・集まりで</span>
         <div class="deck-strip">
-          <figure class="deck"><img src="./img/deck/kazoku_v1.jpg" alt="家族で話す"><figcaption><b>家族で話す</b>家族なのに、意外と知らない。<span>86問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/parents_v1.jpg" alt="親と話す"><figcaption><b>親と話す</b>いつか聞こうを、今日にする。<span>83問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/kids_v1.jpg" alt="子どもと話す"><figcaption><b>子どもと話す</b>もう一問だけ、聞かせて。<span>81問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/bestfriend_v1.jpg" alt="親友とサシで"><figcaption><b>親友とサシで</b>十年分を、一晩で。<span>80問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/icebreak_v1.jpg" alt="初対面"><figcaption><b>初対面</b>三分で、打ち解ける。<span>76問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/kazoku_v1.jpg" alt="家族で話す" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>家族で話す</b>家族なのに、意外と知らない。<span>86問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/parents_v1.jpg" alt="親と話す" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>親と話す</b>いつか聞こうを、今日にする。<span>83問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/kids_v1.jpg" alt="子どもと話す" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>子どもと話す</b>もう一問だけ、聞かせて。<span>81問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/bestfriend_v1.jpg" alt="親友とサシで" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>親友とサシで</b>十年分を、一晩で。<span>80問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/icebreak_v1.jpg" alt="初対面" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>初対面</b>三分で、打ち解ける。<span>76問</span></figcaption></figure>
         </div>
       </div>
     </div>
