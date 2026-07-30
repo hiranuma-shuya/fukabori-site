@@ -66,15 +66,24 @@
   }
   .chip b { color: var(--amber); font-weight: 600; }
 
-  /* hero card visual：オンボーディング1枚目と同じ絵。実素材を扇に開く */
-  .stage { position: relative; height: 460px; }
+  /* hero card visual：アプリの実カードを扇に開く。
+     質問が読めることが大事なので、表を大きめに取る */
+  .stage { position: relative; height: 500px; }
   .fan {
-    position: absolute; left: 50%; top: 50%; width: 252px;
-    filter: drop-shadow(0 26px 50px rgba(0,0,0,.55));
+    position: absolute; left: 50%; top: 50%; width: 300px;
+    border-radius: 14px;
   }
-  .fan.front { transform: translate(-50%,-50%) rotate(-2deg); z-index: 3; }
-  .fan.back.left  { transform: translate(-78%,-52%) rotate(-13deg); z-index: 1; opacity: .92; }
-  .fan.back.right { transform: translate(-22%,-49%) rotate(10deg);  z-index: 2; opacity: .96; }
+  .fan.front {
+    transform: translate(-50%,-50%) rotate(-2deg); z-index: 3;
+    filter: drop-shadow(0 30px 56px rgba(0,0,0,.6));
+  }
+  /* 裏面は暗いので、背景に溶けないよう縁の光をわずかに足す */
+  .fan.back {
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,.5))
+            drop-shadow(0 0 1px rgba(232,169,76,.55));
+  }
+  .fan.back.left  { transform: translate(-83%,-53%) rotate(-14deg); z-index: 1; }
+  .fan.back.right { transform: translate(-17%,-50%) rotate(11deg);  z-index: 2; }
   /* 卓の灯り。カードの後ろから淡く照らす */
   .stage::before {
     content: ""; position: absolute; left: 50%; top: 50%;
