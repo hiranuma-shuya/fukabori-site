@@ -199,6 +199,11 @@
     card_id: params.get("card") || "",
     app_version: params.get("v") || "",
   };
+  // ?kind=other のように、開いた場所に合わせて最初の選択を変えられる
+  const preset = params.get("kind");
+  const presetEl = preset && form.querySelector(`input[value="${CSS.escape(preset)}"]`);
+  if (presetEl) presetEl.checked = true;
+
   if (ctx.deck_id || ctx.card_id) {
     const deckName = params.get("deckname") || ctx.deck_id;
     const question = params.get("q");
