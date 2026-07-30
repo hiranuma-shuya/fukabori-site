@@ -171,8 +171,10 @@
   /* 実機スクショ。端末の枠は作らず、画面そのものを角丸で見せる */
   .screens { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 44px; }
   .screens figure { margin: 0; text-align: center; }
+  /* height: auto は必須。img の height 属性を入れているので、
+     これが無いと属性の高さが効いて縦に伸びる */
   .screens img {
-    display: block; width: 100%; border-radius: 26px;
+    display: block; width: 100%; height: auto; border-radius: 26px;
     border: 1px solid rgba(232,169,76,.2);
     box-shadow: 0 26px 54px rgba(0,0,0,.5);
   }
@@ -196,7 +198,7 @@
   .deck-strip::-webkit-scrollbar-thumb { background: rgba(232,169,76,.28); border-radius: 99px; }
   figure.deck { margin: 0; scroll-snap-align: start; }
   figure.deck img {
-    display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover;
+    display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover;
     border-radius: 16px; border: 1px solid rgba(232,169,76,.22);
     box-shadow: 0 16px 34px rgba(0,0,0,.45);
     transition: transform .25s ease, border-color .25s ease;
