@@ -66,8 +66,25 @@
   }
   .chip b { color: var(--amber); font-weight: 600; }
 
-  /* hero card visual */
-  .stage { position: relative; height: 420px; }
+  /* hero card visual：オンボーディング1枚目と同じ絵。実素材を扇に開く */
+  .stage { position: relative; height: 460px; }
+  .fan {
+    position: absolute; left: 50%; top: 50%; width: 252px;
+    filter: drop-shadow(0 26px 50px rgba(0,0,0,.55));
+  }
+  .fan.front { transform: translate(-50%,-50%) rotate(-2deg); z-index: 3; }
+  .fan.back.left  { transform: translate(-78%,-52%) rotate(-13deg); z-index: 1; opacity: .92; }
+  .fan.back.right { transform: translate(-22%,-49%) rotate(10deg);  z-index: 2; opacity: .96; }
+  /* 卓の灯り。カードの後ろから淡く照らす */
+  .stage::before {
+    content: ""; position: absolute; left: 50%; top: 50%;
+    width: 460px; height: 460px; transform: translate(-50%,-50%);
+    background: radial-gradient(circle, rgba(232,169,76,.16), transparent 65%);
+    pointer-events: none;
+  }
+
+  /* 旧CSSカード（他所で使っていたら壊さないため残す） */
+  .stage-legacy { position: relative; height: 420px; }
   .qcard {
     position: absolute; width: 250px; height: 340px; border-radius: 22px;
     box-shadow: 0 30px 60px rgba(0,0,0,.5);
@@ -139,8 +156,46 @@
   }
   .deck-card .moon-stamp { position: absolute; right: 24px; bottom: 20px; color: rgba(28,26,23,.18); }
 
-  .paid-note { text-align: center; margin-top: 30px; color: var(--text2); font-size: 13px; }
+  .paid-note { text-align: center; margin-top: 34px; color: var(--text2); font-size: 13px; }
   .paid-note b { color: var(--amber); font-weight: 600; }
+
+  /* 実機スクショ。端末の枠は作らず、画面そのものを角丸で見せる */
+  .screens { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 44px; }
+  .screens figure { margin: 0; text-align: center; }
+  .screens img {
+    display: block; width: 100%; border-radius: 26px;
+    border: 1px solid rgba(232,169,76,.2);
+    box-shadow: 0 26px 54px rgba(0,0,0,.5);
+  }
+  .screens figcaption { margin-top: 16px; font-size: 12.5px; color: var(--text2); line-height: 1.8; }
+
+  /* デッキ棚：アプリのホームと同じ見え方。横に流して枚数の多さも伝える */
+  .shelf { margin-top: 46px; display: flex; flex-direction: column; gap: 40px; }
+  .shelf-label {
+    display: block; font-size: 13px; color: var(--text2);
+    letter-spacing: 4px; margin-bottom: 16px;
+  }
+  .deck-strip {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 208px;
+    gap: 18px; overflow-x: auto; padding-bottom: 10px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin; scrollbar-color: rgba(232,169,76,.3) transparent;
+  }
+  .deck-strip::-webkit-scrollbar { height: 6px; }
+  .deck-strip::-webkit-scrollbar-thumb { background: rgba(232,169,76,.28); border-radius: 99px; }
+  figure.deck { margin: 0; scroll-snap-align: start; }
+  figure.deck img {
+    display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover;
+    border-radius: 16px; border: 1px solid rgba(232,169,76,.22);
+    box-shadow: 0 16px 34px rgba(0,0,0,.45);
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  figure.deck:hover img { transform: translateY(-5px); border-color: rgba(232,169,76,.55); }
+  figure.deck figcaption { margin-top: 12px; font-size: 12px; color: var(--text2); line-height: 1.7; }
+  figure.deck figcaption b {
+    display: block; color: var(--text); font-size: 15px; font-weight: 600; letter-spacing: .5px;
+  }
+  figure.deck figcaption span { display: block; color: var(--amber); font-size: 11px; margin-top: 3px; }
 
   /* pricing */
   .price-card { text-align: center; padding: 38px 26px; }
@@ -170,8 +225,16 @@
   @media (max-width: 820px) {
     nav .links { display: none; }
     .hero-grid { grid-template-columns: 1fr; }
-    .stage { height: 380px; transform: scale(.86); }
+    .stage { height: 380px; transform: scale(.82); }
     .grid3 { grid-template-columns: 1fr; }
+    /* スクショは横に流す。3列に押し込むと文字が読めなくなる */
+    .screens {
+      grid-template-columns: repeat(3, 74vw);
+      grid-auto-flow: column; overflow-x: auto;
+      scroll-snap-type: x mandatory; padding-bottom: 12px;
+    }
+    .screens figure { scroll-snap-align: center; }
+    .deck-strip { grid-auto-columns: 62vw; }
   }
 </style>
 </head>
@@ -209,14 +272,12 @@
         <span class="chip">オフラインでも使える</span>
       </div>
     </div>
+    <!-- アプリで実際に使っているカードの絵をそのまま置く。
+         CSSで似せた偽物より、本物のほうが強い -->
     <div class="stage" aria-hidden="true">
-      <div class="qcard back b1"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="name serif-en">Fukabori</span></div>
-      <div class="qcard back b2"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="name serif-en">Fukabori</span></div>
-      <div class="qcard paper">
-        <div class="level"><i></i>カジュアル</div>
-        <div class="q">わたしの第一印象、<br>正直どうだった？</div>
-        <div class="foot"><span>カップル</span><span class="serif-en">Fukabori</span></div>
-      </div>
+      <img class="fan back left"  src="./img/app/onb_card_back.png"  alt="">
+      <img class="fan back right" src="./img/app/onb_card_back.png"  alt="">
+      <img class="fan front"      src="./img/app/onb_card_front.png" alt="">
     </div>
   </div>
 </header>
@@ -243,31 +304,62 @@
   </div>
 </section>
 
+<!-- 実機のスクリーンショット。作り物ではないことを見せるのがこの節の役目 -->
+<section id="screens" style="padding-top: 0;">
+  <div class="wrap">
+    <h2>画面はこんな感じ</h2>
+    <div class="screens">
+      <figure><img src="./img/app/screen_home.jpg" alt="デッキを選ぶ画面"><figcaption>今夜の相手と気分でデッキを選ぶ</figcaption></figure>
+      <figure><img src="./img/app/screen_pile.jpg" alt="カードの束"><figcaption>スマホを真ん中に置いて、1枚めくる</figcaption></figure>
+      <figure><img src="./img/app/screen_card.jpg" alt="質問カード"><figcaption>声に出して答える。いやなら飛ばしていい</figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <section id="decks" style="padding-top: 0;">
   <div class="wrap">
     <h2>21のデッキ、ぜんぶ無料で試せる</h2>
-    <div class="grid3">
-      <div class="deck-card">
-        <span class="free">15問 FREE</span>
-        <div class="icon" style="background: var(--rose);"><svg class="ic-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.5-1.4 3-3.1 3-5.2A5.3 5.3 0 0 0 16.7 3c-1.9 0-3.2.9-4.7 2.6C10.5 3.9 9.2 3 7.3 3A5.3 5.3 0 0 0 2 8.8c0 2.1 1.5 3.8 3 5.2l7 6.8z"/></svg></div>
-        <h3>カップル</h3><p>答えるたび、近くなる。全95問・4段階のふかさ。</p>
-        <span class="moon-stamp"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
+    <p class="sub">どのデッキも、はじめの15問は無料。気に入ったら買い切り（¥280〜）かプレミアムで全問解放。</p>
+
+    <!-- アプリの棚と同じ絵。1枚1枚に描き下ろしのアートがある、が伝わるように並べる -->
+    <div class="shelf">
+      <div class="shelf-row">
+        <span class="shelf-label">ひとりの夜に</span>
+        <div class="deck-strip">
+          <figure class="deck"><img src="./img/deck/self_v1.jpg" alt="セルフケア"><figcaption><b>セルフケア</b>がんばった日の、手当て。<span>87問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/breakup_v1.jpg" alt="失恋"><figcaption><b>失恋</b>ちゃんと痛んで、ちゃんと進む。<span>85問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/goals_v1.jpg" alt="目標と習慣"><figcaption><b>目標と習慣</b>決意を、続く形に。<span>89問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/shukatsu_v1.jpg" alt="自己分析"><figcaption><b>自己分析</b>語れる言葉に、変えていく。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/thirties_v1.jpg" alt="30代の棚おろし"><figcaption><b>30代の棚おろし</b>気づけば、折り返し。<span>88問</span></figcaption></figure>
+        </div>
       </div>
-      <div class="deck-card">
-        <span class="free">15問 FREE</span>
-        <div class="icon" style="background: var(--blue);"><svg class="ic-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><path d="M8 22h8M12 15v7M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/></svg></div>
-        <h3>友達</h3><p>いつメンの、知らない顔。飲み会が語り場になる75問。</p>
-        <span class="moon-stamp"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
+
+      <div class="shelf-row">
+        <span class="shelf-label">ふたりの時間</span>
+        <div class="deck-strip">
+          <figure class="deck"><img src="./img/deck/couple_v1.jpg" alt="カップル"><figcaption><b>カップル</b>答えるたび、近くなる。<span>95問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/before_living_v1.jpg" alt="同棲前会議"><figcaption><b>同棲前会議</b>住む前に、ぜんぶ話そう。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/marriage_v1.jpg" alt="結婚前会議"><figcaption><b>結婚前会議</b>決める前に、ぜんぶ話す。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/money_v1.jpg" alt="お金の会議"><figcaption><b>お金の会議</b>言いにくい話は、カードに言わせる。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/lifeplan_v1.jpg" alt="ふたりの人生設計"><figcaption><b>ふたりの人生設計</b>その選択、ふたりで決めたい。<span>88問</span></figcaption></figure>
+        </div>
       </div>
-      <div class="deck-card">
-        <span class="free">15問 FREE</span>
-        <div class="icon" style="background: var(--green);"><svg class="ic-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"/><path d="M5 18v2M19 18v2"/></svg></div>
-        <h3>セルフケア</h3><p>がんばった日の、手当て。自分を整える87問。</p>
-        <span class="moon-stamp"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
+
+      <div class="shelf-row">
+        <span class="shelf-label">家族と・集まりで</span>
+        <div class="deck-strip">
+          <figure class="deck"><img src="./img/deck/kazoku_v1.jpg" alt="家族で話す"><figcaption><b>家族で話す</b>家族なのに、意外と知らない。<span>86問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/parents_v1.jpg" alt="親と話す"><figcaption><b>親と話す</b>いつか聞こうを、今日にする。<span>83問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/kids_v1.jpg" alt="子どもと話す"><figcaption><b>子どもと話す</b>もう一問だけ、聞かせて。<span>81問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/bestfriend_v1.jpg" alt="親友とサシで"><figcaption><b>親友とサシで</b>十年分を、一晩で。<span>80問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/icebreak_v1.jpg" alt="初対面"><figcaption><b>初対面</b>三分で、打ち解ける。<span>76問</span></figcaption></figure>
+        </div>
       </div>
     </div>
+
     <p class="paid-note">
-      ほかに <b>ひとりの夜に</b>（失恋／目標と習慣／自己分析／30代の棚おろし／わたしの夜 18+）、<b>ふたりの時間</b>（夜ふたりで 18+／ふれる夜 18+）、<b>ふたりで決める</b>（同棲前会議／結婚前会議／ふたりの人生設計／お金の会議／子育て会議）、<b>家族と</b>（家族で話す／親と話す／子どもと話す）、<b>集まりで</b>（親友とサシで／初対面／恋と性の話 18+）。どのデッキも冒頭15問は無料。気に入ったら買い切り（¥280〜）かプレミアムで全問解放。
+      ほかに <b>友達</b>／<b>子育て会議</b>、そして18歳以上向けの
+      <b>わたしの夜</b>／<b>夜ふたりで</b>／<b>ふれる夜</b>／<b>恋と性の話</b>。
     </p>
   </div>
 </section>
