@@ -168,6 +168,40 @@
   .paid-note { text-align: center; margin-top: 34px; color: var(--text2); font-size: 13px; }
   .paid-note b { color: var(--amber); font-weight: 600; }
 
+  /* 主張を1行だけ置く帯。段組みにせず、余白で効かせる */
+  .band { padding: 64px 0; text-align: center; }
+  .band-lead {
+    font-size: clamp(23px, 3.6vw, 34px); font-weight: 700;
+    letter-spacing: 2px; line-height: 1.6;
+  }
+  .band-lead .gold { color: var(--amber); }
+  .band-sub {
+    margin: 18px auto 0; max-width: 620px;
+    color: var(--text2); font-size: 14px;
+  }
+  .band.safety {
+    background:
+      radial-gradient(620px 300px at 50% 50%, rgba(232,169,76,.07), transparent 70%);
+  }
+
+  /* 6つの夜。デッキアートを添えて、場面と中身を結びつける */
+  .nights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
+  .night {
+    display: flex; gap: 16px; align-items: center;
+    padding: 16px; border-radius: 18px;
+    background: rgba(26,33,48,.5); border: 1px solid rgba(255,255,255,.06);
+    transition: border-color .2s, background .2s;
+  }
+  .night:hover { border-color: rgba(232,169,76,.4); background: rgba(232,169,76,.06); }
+  .night img {
+    width: 78px; height: auto; aspect-ratio: 2 / 3; object-fit: cover;
+    border-radius: 10px; flex: none;
+    border: 1px solid rgba(232,169,76,.2);
+  }
+  .night h3 { font-size: 15px; font-weight: 600; letter-spacing: .5px; }
+  .night p { font-size: 12.5px; color: var(--text2); margin-top: 5px; line-height: 1.7; }
+  .night span { display: block; margin-top: 7px; font-size: 11px; color: var(--amber); opacity: .85; }
+
   /* 実機スクショ。端末の枠は作らず、画面そのものを角丸で見せる */
   .screens { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 44px; }
   .screens figure { margin: 0; text-align: center; }
@@ -248,6 +282,9 @@
     .fan.back.right { transform: translate(-20%,-49%) rotate(10deg); }
     .stage::before { width: 320px; height: 320px; }
 
+    .nights { grid-template-columns: 1fr; gap: 12px; }
+    .band { padding: 48px 0; }
+
     /* スクショは横に流す。次があると分かるよう少し覗かせる */
     .screens {
       grid-template-columns: repeat(3, 62vw);
@@ -268,7 +305,8 @@
       <svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Fukabori <small>フカボリ</small>
     </a>
     <div class="links">
-      <a href="#features">特徴</a>
+      <a href="#scenes">使う場面</a>
+      <a href="#features">使い方</a>
       <a href="#decks">デッキ紹介</a>
       <a href="#pricing">料金プラン</a>
     </div>
@@ -279,10 +317,13 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <h1>深い話を、<br><span class="gold">ゲームみたいに。</span></h1>
+      <!-- 1段目は痛み。「話せない」ではなく「きっかけがない」と構造を名指しする。
+           機能の説明（会話カードアプリ）はリードに下げる -->
+      <h1>大事な話ほど、<br><span class="gold">きっかけがない。</span></h1>
       <p class="lead">
-        照れずに本音を話せるきっかけを、ポケットに。<br>
-        カップル、友達、自分と。会話カードを1枚引くだけで、いつもの時間が少し特別になる。
+        だから、カードのせいにして話そう。<br>
+        スマホを真ん中に置いてめくれば、照れくさい本音も「ゲームだから」で言える。
+        恋人と、友達と、家族と。ひとりの夜にも。
       </p>
       <div class="cta">
         <a class="btn btn-amber" href="#cta">無料ではじめる</a>
@@ -305,13 +346,43 @@
   </div>
 </header>
 
+<!-- 3段目の発見。売る順は「言い訳 → 発見」なので、接近より前にここで出す -->
+<section id="discovery" class="band">
+  <div class="wrap">
+    <p class="band-lead">めくるたび、<span class="gold">「そうなんだ、意外！」</span></p>
+    <p class="band-sub">知ってるつもりだった人の、まだ知らない話に出会えます。</p>
+  </div>
+</section>
+
+<!-- 6つの夜。どの場面で使うものなのかを、実際のデッキと結びつけて見せる -->
 <section id="scenes">
   <div class="wrap">
-    <h2>こんなときに使える</h2>
-    <div class="grid3">
-      <div class="panel"><h3>デートの夜に</h3><p>ふたりの距離が、少しだけ近くなる。いつもの「今日どうだった？」の先へ。</p></div>
-      <div class="panel"><h3>友達との飲み会に</h3><p>いつメンの、知らない顔が見える。乾杯のあとの2杯目から、話が変わる。</p></div>
-      <div class="panel"><h3>ひとりで考えたい夜に</h3><p>自分と向き合う、5分のひとり会議。頭の中を、そっと言葉にする。</p></div>
+    <h2>使うのは、こんな夜</h2>
+    <div class="nights">
+      <a class="night" href="#decks">
+        <img src="./img/deck/couple_v1.jpg" alt="" width="480" height="720" loading="lazy" decoding="async">
+        <div><h3>金曜の夜、ふたりの部屋</h3><p>テレビを消して、スマホを真ん中に。</p><span>カップル・夜ふたりで</span></div>
+      </a>
+      <a class="night" href="#decks">
+        <img src="./img/deck/before_living_v1.jpg" alt="" width="480" height="720" loading="lazy" decoding="async">
+        <div><h3>内見帰りのカフェ</h3><p>答えがそのまま、ふたりのルールになる。</p><span>同棲前会議・お金の会議</span></div>
+      </a>
+      <a class="night" href="#decks">
+        <img src="./img/deck/parents_v1.jpg" alt="" width="480" height="720" loading="lazy" decoding="async">
+        <div><h3>帰省した夜の食卓</h3><p>片付いたあと、親は少し照れる。</p><span>親と話す・家族で話す</span></div>
+      </a>
+      <a class="night" href="#decks">
+        <img src="./img/deck/bestfriend_v1.jpg" alt="" width="480" height="720" loading="lazy" decoding="async">
+        <div><h3>二軒目の個室</h3><p>笑いから入って、ふと本音がこぼれる。</p><span>友達・親友とサシで</span></div>
+      </a>
+      <a class="night" href="#decks">
+        <img src="./img/deck/breakup_v1.jpg" alt="" width="480" height="720" loading="lazy" decoding="async">
+        <div><h3>眠れない夜、ひとりで</h3><p>誰にも見せないから、正直に書ける。</p><span>失恋・セルフケア</span></div>
+      </a>
+      <a class="night" href="#decks">
+        <img src="./img/deck/lifeplan_v1.jpg" alt="" width="480" height="720" loading="lazy" decoding="async">
+        <div><h3>旅行とドライブ</h3><p>視線が並ぶと、話しやすい。</p><span>ふたりの人生設計</span></div>
+      </a>
     </div>
   </div>
 </section>
@@ -322,8 +393,19 @@
     <div class="grid3">
       <div class="panel"><div class="step-no">1</div><h3>スマホを真ん中に置く</h3><p>みんなが見えるように、テーブルの真ん中へ。それだけで準備完了。</p></div>
       <div class="panel"><div class="step-no">2</div><h3>カードを引く</h3><p>テーマに合わせて1枚。浅い質問から、だんだん深くなっていく。</p></div>
-      <div class="panel"><div class="step-no">3</div><h3>声に出して答える</h3><p>考えたことを、そのまま声に。答えたくない質問は、パスすればいい。</p></div>
+      <div class="panel"><div class="step-no">3</div><h3>声に出して答える</h3><p>考えたことを、そのまま声に。それだけで、話が動きはじめる。</p></div>
     </div>
+  </div>
+</section>
+
+<!-- 気まずくならない保証。買う前のいちばんの不安なので独立して置く -->
+<section id="safety" class="band safety">
+  <div class="wrap">
+    <p class="band-lead">答えたくない質問は、<span class="gold">めくって進むだけ。</span></p>
+    <p class="band-sub">
+      気まずくならないように設計してあります。
+      浅い質問から始まって、少しずつ深くなる。誰かを名指しで追い込む問いは入れていません。
+    </p>
   </div>
 </section>
 
@@ -415,8 +497,9 @@
 
 <section class="last-cta" id="cta" style="padding-top: 10px;">
   <div class="wrap">
-    <h2>今夜、少しだけ深い話をしてみよう。</h2>
-    <p class="sub">App Store で近日公開。</p>
+    <!-- 4段目の接近。ここまで来た人にだけ、結果を静かに置く -->
+    <h2>きっかけは、ポケットの中に。</h2>
+    <p class="sub">今夜、スマホを真ん中に置いて1枚めくってみてください。App Store で近日公開。</p>
     <!-- 公開後: App Store バッジ/リンクに差し替え -->
     <a class="btn btn-amber" href="#">App Store で入手（準備中）</a>
   </div>
