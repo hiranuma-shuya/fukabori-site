@@ -236,16 +236,25 @@
   @media (max-width: 820px) {
     nav .links { display: none; }
     .hero-grid { grid-template-columns: 1fr; }
-    .stage { height: 380px; transform: scale(.82); }
     .grid3 { grid-template-columns: 1fr; }
-    /* スクショは横に流す。3列に押し込むと文字が読めなくなる */
+
+    /* 縦積みではカードを小さくして、扇の幅を画面内に収める。
+       transform: scale で縮めると .hero の overflow:hidden に切られる */
+    .stage { height: 330px; }
+    .fan { width: 190px; }
+    .fan.back.left  { transform: translate(-80%,-52%) rotate(-13deg); }
+    .fan.back.right { transform: translate(-20%,-49%) rotate(10deg); }
+    .stage::before { width: 320px; height: 320px; }
+
+    /* スクショは横に流す。次があると分かるよう少し覗かせる */
     .screens {
-      grid-template-columns: repeat(3, 74vw);
+      grid-template-columns: repeat(3, 62vw);
       grid-auto-flow: column; overflow-x: auto;
       scroll-snap-type: x mandatory; padding-bottom: 12px;
     }
     .screens figure { scroll-snap-align: center; }
-    .deck-strip { grid-auto-columns: 62vw; }
+    .screens img { border-radius: 20px; }
+    .deck-strip { grid-auto-columns: 52vw; }
   }
 </style>
 </head>
