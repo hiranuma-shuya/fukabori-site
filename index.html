@@ -296,6 +296,54 @@
     .deck-strip { grid-auto-columns: 52vw; }
   }
 </style>
+<!-- 計測。SNSからの流入がストアまで届いているかを見るためだけに入れている。
+     見たいのは「投稿 → LP → App Store」の3段の率で、それ以外は取らない。
+
+     ・autocapture は切ってある（勝手に全部のクリックを拾わせない）
+     ・セッション録画は入れない（アプリ側と同じ判断。個人的な内容を拾いうるため）
+     ・Do Not Track を出しているブラウザからは送らない
+     プライバシーポリシー（legal/privacy.html）の「ウェブサイトについて」に対応する。 -->
+<script>
+(function () {
+  var KEY  = 'phc_mdtMoTpNnozGdZeCLP4mNrGF9wFxScvhoNGW9rJ8dzfP';
+  var HOST = 'https://us.i.posthog.com';
+
+  var s = document.createElement('script');
+  s.src = 'https://us-assets.i.posthog.com/static/array.js';
+  s.async = true;
+  s.onload = function () {
+    if (!window.posthog || !posthog.init) return;
+
+    posthog.init(KEY, {
+      api_host: HOST,
+      autocapture: false,
+      capture_pageview: true,
+      disable_session_recording: true,
+      respect_dnt: true,
+      person_profiles: 'identified_only',
+
+      // PostHog は既定で追加のスクリプトを読み込む（押し損ねクリックの自動記録・
+      // アンケート機能・Web Vitals）。今回の計測に要らないので全部切る。
+      // 切らないとページが重くなるうえ、取る気のない記録が増える。
+      capture_dead_clicks: false,
+      disable_surveys: true,
+      capture_performance: false
+    });
+
+    // App Store へ出ていくボタン。data-store-cta にページ内のどこかを書いてある。
+    // ページ内に3箇所あるので、どこが押されているかまで見る。
+    var ctas = document.querySelectorAll('[data-store-cta]');
+    for (var i = 0; i < ctas.length; i++) {
+      ctas[i].addEventListener('click', function (e) {
+        posthog.capture('lp_store_click', {
+          position: e.currentTarget.getAttribute('data-store-cta')
+        });
+      });
+    }
+  };
+  document.head.appendChild(s);
+})();
+</script>
 </head>
 <body>
 
@@ -310,7 +358,7 @@
       <a href="#decks">デッキ紹介</a>
       <a href="#pricing">料金プラン</a>
     </div>
-    <a class="btn btn-amber" href="https://apps.apple.com/jp/app/id6794950952">無料ではじめる</a>
+    <a class="btn btn-amber" data-store-cta="nav" href="https://apps.apple.com/jp/app/id6794950952">無料ではじめる</a>
   </nav>
 </div>
 
@@ -325,7 +373,7 @@
         恋人と、友達と、家族と。ひとりの夜にも。
       </p>
       <div class="cta">
-        <a class="btn btn-amber" href="https://apps.apple.com/jp/app/id6794950952">無料ではじめる</a>
+        <a class="btn btn-amber" data-store-cta="hero" href="https://apps.apple.com/jp/app/id6794950952">無料ではじめる</a>
         <a class="btn btn-ghost" href="#decks">デッキを見る</a>
       </div>
       <div class="chips">
@@ -422,7 +470,7 @@
 
 <section id="decks" style="padding-top: 0;">
   <div class="wrap">
-    <h2>21のデッキ、ぜんぶ無料で試せる</h2>
+    <h2>19のデッキ、ぜんぶ無料で試せる</h2>
     <p class="sub">どのデッキも、はじめの15問は無料。気に入ったら買い切り（¥280〜）かプレミアムで全問解放。</p>
 
     <!-- アプリの棚と同じ絵。1枚1枚に描き下ろしのアートがある、が伝わるように並べる -->
@@ -485,9 +533,9 @@
       </div>
       <div class="panel price-card featured">
         <div class="name">プレミアム</div>
-        <div class="price">月¥480</div>
-        <div class="per">買い切り ¥4,800 も選べます</div>
-        <ul><li>全てのデッキが使い放題</li><li>今後の新デッキも追加費用なし</li><li>買い切りなら更新なしで永久に</li></ul>
+        <div class="price">¥4,800</div>
+        <div class="per">買い切り・一度きりの支払い</div>
+        <ul><li>全てのデッキが使い放題</li><li>今後の新デッキも追加費用なし</li><li>更新なしで永久に</li></ul>
       </div>
     </div>
   </div>
@@ -498,7 +546,7 @@
     <!-- 4段目の接近。ここまで来た人にだけ、結果を静かに置く -->
     <h2>きっかけは、ポケットの中に。</h2>
     <p class="sub">今夜、スマホを真ん中に置いて1枚めくってみてください。</p>
-        <a class="btn btn-amber" href="https://apps.apple.com/jp/app/id6794950952">App Store で入手</a>
+        <a class="btn btn-amber" data-store-cta="bottom" href="https://apps.apple.com/jp/app/id6794950952">App Store で入手</a>
   </div>
 </section>
 
