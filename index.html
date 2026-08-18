@@ -336,7 +336,9 @@
     for (var i = 0; i < ctas.length; i++) {
       ctas[i].addEventListener('click', function (e) {
         posthog.capture('lp_store_click', {
-          position: e.currentTarget.getAttribute('data-store-cta')
+          // 'position' という名前にすると HogQL の同名関数と衝突して
+          // properties.position が黙って null を返す。cta_position にしてある。
+          cta_position: e.currentTarget.getAttribute('data-store-cta')
         });
       });
     }
