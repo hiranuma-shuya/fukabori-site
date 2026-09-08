@@ -102,16 +102,19 @@
   .done { text-align: center; padding: 66px 0; }
   .done h2 { font-size: 23px; font-weight: 700; letter-spacing: 1px; }
   .done p { color: var(--text2); font-size: 14px; margin-top: 16px; }
-  .done .moon { color: var(--amber); font-size: 30px; }
+  .done .confirmation { color: var(--amber); font-size: 30px; }
 
   footer { margin-top: 46px; color: var(--text2); font-size: 12px; }
   footer a { color: var(--text2); text-decoration: underline; }
 </style>
+<link rel="icon" type="image/png" sizes="32x32" href="img/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/brand/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/brand/apple-touch-icon.png">
 </head>
 <body>
 <div class="wrap">
   <header>
-    <span class="logo">☾ Fukabori <small>フカボリ</small></span>
+    <span class="logo"><img src="img/brand/app-icon.png" width="32" height="32" alt="" style="border-radius:8px;vertical-align:middle;margin-right:8px"> Fukabori <small>フカボリ</small></span>
   </header>
 
   <main id="main">
@@ -278,7 +281,7 @@
   function done() {
     document.getElementById("main").innerHTML = `
       <div class="done">
-        <div class="moon">☾</div>
+        <div class="confirmation" aria-hidden="true">✓</div>
         <h2>ありがとうございます</h2>
         <p>いただいた内容は、ぜんぶ読んでいます。<br>
            カードとデッキの改善に使わせてください。</p>

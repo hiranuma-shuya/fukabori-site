@@ -25,14 +25,12 @@
   .ic { width: 1em; height: 1em; vertical-align: -0.12em; }
   .ic-line { width: 24px; height: 24px; }
   .qcard.back .ic { width: 34px; height: 34px; color: var(--amber); filter: drop-shadow(0 0 12px rgba(232,169,76,.45)); }
-  .moon-stamp .ic { width: 18px; height: 18px; }
   a { color: inherit; text-decoration: none; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
   /* nav */
   nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
   .logo { display: flex; align-items: center; gap: 10px; color: var(--amber); font-size: 22px; }
-  .logo .moon { font-size: 18px; }
   .logo small { color: var(--text2); font-size: 11px; letter-spacing: 3px; margin-left: 2px; }
   nav .links { display: flex; gap: 28px; font-size: 13px; color: var(--text2); }
   nav .links a:hover { color: var(--amber); }
@@ -106,7 +104,8 @@
   }
   .qcard.paper .level { display: flex; align-items: center; gap: 7px; font-size: 11px; color: #5c8d7c; font-weight: 600; }
   .qcard.paper .level i { width: 8px; height: 8px; border-radius: 50%; background: #7FB6A4; }
-  .qcard.paper .q { margin: auto 0; font-size: 21px; font-weight: 600; line-height: 1.9; }
+  .qcard.paper .q { text-wrap: balance; margin: auto 0; font-size: 21px; font-weight: 600; line-height: 1.9; }
+  .qcard.paper .q span { display: block; white-space: nowrap; }
   .qcard.paper .foot { display: flex; justify-content: space-between; font-size: 11px; color: rgba(28,26,23,.4); }
   .qcard.back {
     background: linear-gradient(180deg, #1D2536, #121826);
@@ -114,11 +113,10 @@
     left: 50%; top: 46%;
     display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;
   }
-  .qcard.back::before {
-    content: ""; position: absolute; inset: 7px; border-radius: 16px;
-    border: 1px solid rgba(232,169,76,.45);
-  }
-  .qcard.back .moon { font-size: 34px; color: var(--amber); text-shadow: 0 0 24px rgba(232,169,76,.45); }
+
+  .qcard.back { overflow: hidden; }
+  .qcard.back img { width: 100%; height: 100%; object-fit: cover; }
+  .qcard.back::after { content: ""; position: absolute; inset: 0; background: rgba(11,15,24,.28); pointer-events: none; }
   .qcard.back .name { color: rgba(232,169,76,.8); font-size: 16px; }
   .qcard.back.b1 { transform: translate(-88%,-54%) rotate(-14deg); z-index: 1; opacity: .85; }
   .qcard.back.b2 { transform: translate(-14%,-48%) rotate(9deg); z-index: 2; }
@@ -163,7 +161,6 @@
     letter-spacing: 1.5px; color: rgba(28,26,23,.55);
     border: 1px solid rgba(28,26,23,.3); border-radius: 999px; padding: 4px 10px;
   }
-  .deck-card .moon-stamp { position: absolute; right: 24px; bottom: 20px; color: rgba(28,26,23,.18); }
 
   .paid-note { text-align: center; margin-top: 34px; color: var(--text2); font-size: 13px; }
   .paid-note b { color: var(--amber); font-weight: 600; }
@@ -276,7 +273,13 @@
 
     /* 縦積みではカードを小さくして、扇の幅を画面内に収める。
        transform: scale で縮めると .hero の overflow:hidden に切られる */
+    nav .logo small { display: none; }
+    nav .logo { flex-shrink: 0; font-size: 20px; }
+    nav .btn { white-space: nowrap; padding: 11px 16px; font-size: 12px; }
     .stage { height: 330px; }
+    .qcard { width: 190px; height: 270px; }
+    .qcard.paper { padding: 22px; }
+    .qcard.paper .q { font-size: 17px; line-height: 1.7; }
     .fan { width: 190px; }
     .fan.back.left  { transform: translate(-80%,-52%) rotate(-13deg); }
     .fan.back.right { transform: translate(-20%,-49%) rotate(10deg); }
@@ -346,13 +349,16 @@
   document.head.appendChild(s);
 })();
 </script>
+<link rel="icon" type="image/png" sizes="32x32" href="img/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/brand/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/brand/apple-touch-icon.png">
 </head>
 <body>
 
 <div class="wrap">
   <nav>
     <a class="logo serif-en" href="#">
-      <svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.39 20.42 L16.13 21.11 L14.79 21.60 L13.39 21.90 L11.96 22.00 L10.53 21.89 L9.13 21.58 L7.79 21.07 L6.54 20.37 L5.39 19.51 L4.39 18.49 L3.54 17.33 L2.86 16.07 L2.38 14.72 L2.09 13.32 L2.00 11.89 L2.12 10.46 L2.44 9.06 L2.96 7.72 L3.66 6.48 L4.54 5.34 L5.57 4.34 L6.73 3.50 L8.00 2.84 L9.35 2.36 L8.39 3.05 L7.52 3.86 L6.76 4.76 L6.10 5.74 L5.57 6.80 L5.16 7.91 L4.89 9.06 L4.76 10.23 L4.76 11.42 L4.91 12.59 L5.19 13.74 L5.61 14.85 L6.15 15.90 L6.81 16.88 L7.59 17.77 L8.46 18.56 L9.43 19.25 L10.46 19.82 L11.56 20.26 L12.70 20.57 L13.87 20.74 L15.06 20.77 L16.23 20.67 L17.39 20.42Z"/></svg>Fukabori <small>フカボリ</small>
+      <img src="img/brand/app-icon.png" width="32" height="32" alt="" style="border-radius:8px">Fukabori <small>フカボリ</small>
     </a>
     <div class="links">
       <a href="#scenes">使う場面</a>
@@ -384,13 +390,14 @@
         <span class="chip">オフラインでも使える</span>
       </div>
     </div>
-    <!-- アプリの実画面から切り出した本物のカード。
-         カップルデッキの実際の質問と、そのデッキの裏面。
-         イラストではなく中身を見せたほうが、何のアプリか一目で伝わる -->
-    <div class="stage" aria-hidden="true">
-      <img class="fan back left"  src="./img/app/hero_card_back.png"  alt="">
-      <img class="fan back right" src="./img/app/hero_card_back.png"  alt="">
-      <img class="fan front"      src="./img/app/hero_card_front.png" alt="">
+    <div class="stage" aria-label="カップルデッキの質問例">
+      <div class="qcard back b1" aria-hidden="true"><img src="img/deck/couple_v1.jpg" alt=""></div>
+      <div class="qcard back b2" aria-hidden="true"><img src="img/deck/couple_v1.jpg" alt=""></div>
+      <div class="qcard paper">
+        <div class="level">会話のきっかけ</div>
+        <p class="q serif"><span>わたしのいちばん</span><span>好きな食べ物、</span><span>当ててみて</span></p>
+        <div class="foot"><span>カップル</span><span class="serif-en">Fukabori</span></div>
+      </div>
     </div>
   </div>
 </header>
@@ -464,7 +471,7 @@
     <h2>画面はこんな感じ</h2>
     <div class="screens">
       <figure><img src="./img/app/screen_home.jpg" alt="デッキを選ぶ画面" width="800" height="1738" loading="lazy" decoding="async"><figcaption>今夜の相手と気分でデッキを選ぶ</figcaption></figure>
-      <figure><img src="./img/app/screen_pile.jpg" alt="カードの束" width="800" height="1738" loading="lazy" decoding="async"><figcaption>スマホを真ん中に置いて、1枚めくる</figcaption></figure>
+      <figure><img src="./img/app/screen_intro.jpg" alt="実際の質問が読める導入画面" width="800" height="1738" loading="lazy" decoding="async"><figcaption>最初の質問から、会話をはじめる</figcaption></figure>
       <figure><img src="./img/app/screen_card.jpg" alt="質問カード" width="800" height="1738" loading="lazy" decoding="async"><figcaption>声に出して答える。いやなら飛ばしていい</figcaption></figure>
     </div>
   </div>
@@ -472,7 +479,7 @@
 
 <section id="decks" style="padding-top: 0;">
   <div class="wrap">
-    <h2>19のデッキ、ぜんぶ無料で試せる</h2>
+    <h2>20のデッキ、ぜんぶ無料で試せる</h2>
     <p class="sub">どのデッキも、はじめの15問は無料。気に入ったら買い切り（¥280〜）かプレミアムで全問解放。</p>
 
     <!-- アプリの棚と同じ絵。1枚1枚に描き下ろしのアートがある、が伝わるように並べる -->
@@ -480,39 +487,39 @@
       <div class="shelf-row">
         <span class="shelf-label">ひとりの夜に</span>
         <div class="deck-strip">
-          <figure class="deck"><img src="./img/deck/self_v1.jpg" alt="セルフケア" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>セルフケア</b>がんばった日の、手当て。<span>87問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/breakup_v1.jpg" alt="失恋" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>失恋</b>ちゃんと痛んで、ちゃんと進む。<span>85問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/goals_v1.jpg" alt="目標と習慣" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>目標と習慣</b>決意を、続く形に。<span>89問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/shukatsu_v1.jpg" alt="自己分析" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>自己分析</b>語れる言葉に、変えていく。<span>88問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/thirties_v1.jpg" alt="30代の棚おろし" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>30代の棚おろし</b>気づけば、折り返し。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/self_v1.jpg" alt="セルフケア" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>セルフケア</b>がんばった日の、手当て。<span>86問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/breakup_v1.jpg" alt="失恋" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>失恋</b>ちゃんと痛んで、ちゃんと進む。<span>90問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/goals_v1.jpg" alt="目標と習慣" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>目標と習慣</b>決意を、続く形に。<span>92問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/shukatsu_v1.jpg" alt="自分を知る" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>自分を知る</b>語れる言葉に、変えていく。<span>91問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/thirties_v1.jpg" alt="30代の棚おろし" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>30代の棚おろし</b>気づけば、折り返し。<span>89問</span></figcaption></figure>
         </div>
       </div>
 
       <div class="shelf-row">
         <span class="shelf-label">ふたりの時間</span>
         <div class="deck-strip">
-          <figure class="deck"><img src="./img/deck/couple_v1.jpg" alt="カップル" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>カップル</b>答えるたび、近くなる。<span>95問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/before_living_v1.jpg" alt="同棲前会議" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>同棲前会議</b>住む前に、ぜんぶ話そう。<span>88問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/marriage_v1.jpg" alt="結婚前会議" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>結婚前会議</b>決める前に、ぜんぶ話す。<span>88問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/money_v1.jpg" alt="お金の会議" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>お金の会議</b>言いにくい話は、カードに言わせる。<span>88問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/lifeplan_v1.jpg" alt="ふたりの人生設計" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>ふたりの人生設計</b>その選択、ふたりで決めたい。<span>88問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/couple_v1.jpg" alt="カップル" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>カップル</b>答えるたび、近くなる。<span>97問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/before_living_v1.jpg" alt="同棲前会議" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>同棲前会議</b>住む前に、ぜんぶ話そう。<span>94問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/marriage_v1.jpg" alt="結婚前会議" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>結婚前会議</b>決める前に、ぜんぶ話す。<span>93問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/money_v1.jpg" alt="お金の会議" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>お金の会議</b>言いにくい話は、カードに言わせる。<span>94問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/lifeplan_v1.jpg" alt="ふたりの人生設計" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>ふたりの人生設計</b>その選択、ふたりで決めたい。<span>94問</span></figcaption></figure>
         </div>
       </div>
 
       <div class="shelf-row">
         <span class="shelf-label">家族と・集まりで</span>
         <div class="deck-strip">
-          <figure class="deck"><img src="./img/deck/kazoku_v1.jpg" alt="家族で話す" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>家族で話す</b>家族なのに、意外と知らない。<span>86問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/parents_v1.jpg" alt="親と話す" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>親と話す</b>いつか聞こうを、今日にする。<span>83問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/kids_v1.jpg" alt="子どもと話す" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>子どもと話す</b>もう一問だけ、聞かせて。<span>81問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/bestfriend_v1.jpg" alt="親友とサシで" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>親友とサシで</b>十年分を、一晩で。<span>80問</span></figcaption></figure>
-          <figure class="deck"><img src="./img/deck/icebreak_v1.jpg" alt="初対面" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>初対面</b>三分で、打ち解ける。<span>76問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/kazoku_v1.jpg" alt="家族で話す" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>家族で話す</b>家族なのに、意外と知らない。<span>89問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/parents_v1.jpg" alt="親と話す" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>親と話す</b>いつか聞こうを、今日にする。<span>90問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/kids_v1.jpg" alt="子どもと話す" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>子どもと話す</b>もう一問だけ、聞かせて。<span>85問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/bestfriend_v1.jpg" alt="親友とサシで" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>親友とサシで</b>十年分を、一晩で。<span>83問</span></figcaption></figure>
+          <figure class="deck"><img src="./img/deck/icebreak_v1.jpg" alt="初対面" width="480" height="720" loading="lazy" decoding="async"><figcaption><b>初対面</b>三分で、打ち解ける。<span>78問</span></figcaption></figure>
         </div>
       </div>
     </div>
 
     <p class="paid-note">
-      ほかに <b>友達</b>／<b>子育て会議</b>／<b>恋バナ</b>。
+      ほかに <b>友達</b>／<b>子育て会議</b>／<b>恋バナ</b>／<b>これまでの恋、これからのふたり</b>／<b>あらためて、ふたりで</b>。
     </p>
   </div>
 </section>
@@ -531,7 +538,7 @@
         <div class="name">有料デッキ（買い切り）</div>
         <div class="price">¥280〜</div>
         <div class="per">1デッキごと・買い切り</div>
-        <ul><li>¥280 … カップル／友達／セルフケア／失恋／家族で話す／親と話す／子どもと話す／初対面／親友とサシで／恋バナ</li><li>¥410 … 目標と習慣／自己分析／30代の棚おろし／同棲前会議／お金の会議</li><li>¥530 … 結婚前会議／ふたりの人生設計／子育て会議</li><li>¥610 … あらためて、ふたりで</li></ul>
+        <ul><li>¥280 … カップル／友達／セルフケア／失恋／家族で話す／親と話す／子どもと話す／初対面／親友とサシで／恋バナ</li><li>¥410 … 目標と習慣／自分を知る／30代の棚おろし／同棲前会議／お金の会議</li><li>¥530 … 結婚前会議／ふたりの人生設計／子育て会議／これまでの恋、これからのふたり</li><li>¥610 … あらためて、ふたりで</li></ul>
       </div>
       <div class="panel price-card featured">
         <div class="name">プレミアム</div>
@@ -554,7 +561,7 @@
 
 <div class="wrap">
   <footer>
-    <span class="serif-en" style="color: var(--amber);"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.39 20.42 L16.13 21.11 L14.79 21.60 L13.39 21.90 L11.96 22.00 L10.53 21.89 L9.13 21.58 L7.79 21.07 L6.54 20.37 L5.39 19.51 L4.39 18.49 L3.54 17.33 L2.86 16.07 L2.38 14.72 L2.09 13.32 L2.00 11.89 L2.12 10.46 L2.44 9.06 L2.96 7.72 L3.66 6.48 L4.54 5.34 L5.57 4.34 L6.73 3.50 L8.00 2.84 L9.35 2.36 L8.39 3.05 L7.52 3.86 L6.76 4.76 L6.10 5.74 L5.57 6.80 L5.16 7.91 L4.89 9.06 L4.76 10.23 L4.76 11.42 L4.91 12.59 L5.19 13.74 L5.61 14.85 L6.15 15.90 L6.81 16.88 L7.59 17.77 L8.46 18.56 L9.43 19.25 L10.46 19.82 L11.56 20.26 L12.70 20.57 L13.87 20.74 L15.06 20.77 L16.23 20.67 L17.39 20.42Z"/></svg> Fukabori</span>
+    <span class="serif-en" style="color: var(--amber);"><img src="img/brand/app-icon.png" width="24" height="24" alt="" style="border-radius:6px;vertical-align:middle;margin-right:6px"> Fukabori</span>
     <div class="links">
       <a href="./legal/terms.html">利用規約</a>
       <a href="./legal/privacy.html">プライバシーポリシー</a>
