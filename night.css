@@ -23,3 +23,11 @@ body.motion-paused{scroll-behavior:auto}
 .face-front{transform:rotateY(180deg) translateZ(1px)}
 
 @media(max-width:700px){.hero-flip .card-question{font-size:clamp(16px,4.6vw,18px);line-height:1.9}}
+
+/* Same ivory paper, quiet gold accent and uniform question type as the app. */
+.hero-flip .face-front{background:linear-gradient(145deg,#fbf8f2,#f0eadc);padding:26px;box-shadow:0 16px 36px #0005}
+.hero-flip .card-label{font-family:var(--serif);font-size:15px;color:#6d685f}
+.hero-flip .card-label:after{content:"";display:block;width:45px;height:3px;margin-top:9px;background:#be9757;border-radius:80% 20% 70% 30%;transform:rotate(-3deg)}
+.hero-flip .card-question{font:400 23px/1.65 var(--serif);text-align:left;margin:auto 0}
+.hero-flip .face-front:after{content:"";height:35px;flex:none}
+@media(max-width:700px){.hero-flip .face-front{padding:22px}.hero-flip .card-question{font-size:18px;line-height:1.65}.hero-flip .card-label{font-size:13px}}
