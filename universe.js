@@ -63,7 +63,7 @@ if (renderer) {
     ['parents_v1',1.4,-2.8,-2.5,-.2,.2]
   ];
   satelliteConfigs.forEach(([id,x,y,z,ry,rz]) => {
-    textureLoader.load(`img/deck/${id}.jpg`, texture => {
+    textureLoader.load(`img/deck/${id}.webp`, texture => {
       texture.colorSpace = THREE.SRGBColorSpace;
       const card = new THREE.Mesh(new THREE.PlaneGeometry(.72,1.08),new THREE.MeshBasicMaterial({map:texture,transparent:true,opacity:.42,side:THREE.DoubleSide}));
       card.position.set(x,y,z);
