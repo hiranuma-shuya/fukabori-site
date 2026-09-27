@@ -21,3 +21,5 @@ body.motion-paused{scroll-behavior:auto}
 .hero-flip{z-index:3;transform:rotateZ(-8deg);transform-style:flat;perspective:1200px}
 .face-back{transform:translateZ(1px)}
 .face-front{transform:rotateY(180deg) translateZ(1px)}
+
+@media(max-width:700px){.hero-flip .card-question{font-size:clamp(16px,4.6vw,18px);line-height:1.9}}
