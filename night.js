@@ -34,7 +34,7 @@
     });
     chapterButtons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
     $('#story-question').textContent = chapterQuestions[index];
-    $('#story-card-label').textContent = `0${index + 1} / ${chapterLabels[index]}`;
+    $('#story-card-label').textContent = chapterLabels[index];
     $('.journey-stage').style.setProperty('--accent', chapterColors[index]);
     if (animate && !paused && window.gsap) {
       gsap.fromTo(chapters[index], {y:25, opacity:0}, {y:0, opacity:1, duration:.5, overwrite:true});
