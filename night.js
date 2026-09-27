@@ -11,7 +11,7 @@
     '子どもの頃、どんな子だったと言われてた？',
     '最近、大事にされてるなと思ったのはどの場面？'
   ];
-  const chapterLabels = ['気軽な一問', '知らなかった一面', '少し深い本音'];
+  const chapterLabels = ['好きなもの', '子どもの頃', '最近のこと'];
   const chapterColors = ['#dfab76', '#a2bdcf', '#c4a6c9'];
   const chapters = [...document.querySelectorAll('.chapter')];
   const chapterButtons = [...document.querySelectorAll('[data-chapter]')];
