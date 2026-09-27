@@ -22,6 +22,8 @@
     flip.setAttribute('aria-label', open ? 'カードを裏に戻す' : 'カードをめくって質問を見る');
   });
 
+  $('#preview-card').addEventListener('click', () => flip.click());
+
   function setChapter(index, animate = false) {
     index = Math.max(0, Math.min(2, index));
     activeChapter = index;
@@ -33,8 +35,6 @@
     chapterButtons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
     $('#story-question').textContent = chapterQuestions[index];
     $('#story-card-label').textContent = `0${index + 1} / ${chapterLabels[index]}`;
-    $('#depth-label').textContent = `0${index + 1} / 03`;
-    $('#depth-number').textContent = `0${index + 1}`;
     $('.journey-stage').style.setProperty('--accent', chapterColors[index]);
     if (animate && !paused && window.gsap) {
       gsap.fromTo(chapters[index], {y:25, opacity:0}, {y:0, opacity:1, duration:.5, overwrite:true});
