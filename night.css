@@ -31,3 +31,30 @@ body.motion-paused{scroll-behavior:auto}
 .hero-flip .card-question,.story-card .card-question{font:400 23px/1.65 var(--serif);text-align:left;margin:auto 0}
 .hero-flip .face-front:after,.story-card:after{content:"";height:35px;flex:none}
 @media(max-width:700px){.hero-flip .face-front,.story-card{padding:22px;border-radius:16px}.hero-flip .card-question,.story-card .card-question{font-size:18px;line-height:1.65}.hero-flip .card-label,.story-card .card-label{font-size:13px}}
+
+/* Acquisition actions follow the existing card and night palette. */
+.hero-actions{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-top:32px}
+.hero-actions .pill{margin-top:0;font-size:17px;min-height:60px;gap:32px}
+.text-link{font-size:17px;color:var(--muted);padding:14px 0}
+.text-link span{margin-left:12px}
+.text-link:hover{color:var(--text)}
+.sample-install{display:flex;align-items:center;gap:30px;margin-top:30px}
+.sample-install .pill{margin-top:0;font-size:17px}
+.sample-install p{margin:0;color:var(--muted);font-size:17px;line-height:1.8}
+.mobile-install[hidden]{display:none}
+.mobile-install{display:none}
+@media(max-width:700px){
+  .hero-actions{gap:22px;margin-top:24px}
+  .hero-actions .pill{font-size:16px;min-height:54px;padding:14px 22px;gap:25px}
+  .hero-actions .text-link{font-size:16px}
+  .hero{padding-top:115px}
+  .sample-install{align-items:flex-start;flex-direction:column;gap:15px;margin-top:28px}
+  .sample-install p{font-size:16px}
+  .sample-install .pill{font-size:16px;min-height:54px}
+  .mobile-install{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:30;align-items:center;justify-content:space-between;gap:15px;padding:14px 22px calc(14px + env(safe-area-inset-bottom));background:#101116f2;backdrop-filter:blur(16px);border-top:1px solid #ffffff24}
+  .mobile-install>span{font-family:var(--serif);font-size:20px}
+  .mobile-install small{display:block;font-family:var(--sans);font-size:14px;color:var(--muted);margin-top:3px}
+  .mobile-install a{background:var(--text);color:var(--bg);font-size:16px;border-radius:99px;padding:14px 20px;min-height:50px;white-space:nowrap}
+  .mobile-install a span{margin-left:12px}
+}
+@media(max-width:360px){.hero-actions{gap:10px}.hero-actions .pill{gap:18px;font-size:15px}.hero-actions .text-link{font-size:15px}.mobile-install{padding-inline:16px}.mobile-install>span{font-size:18px}.mobile-install a{padding:13px 16px;font-size:15px}}

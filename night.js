@@ -6,6 +6,9 @@
   let context;
   let storyTrigger;
   let activeChapter = 0;
+  function preview(surface, deck, index) {
+    window.dispatchEvent(new CustomEvent('fukabori:preview', {detail: {surface, deck_id: deck, question_index: index}}));
+  }
   const chapterQuestions = [
     'わたしのいちばん好きな食べ物、当ててみて',
     '子どもの頃、どんな子だったと言われてた？',
@@ -19,6 +22,7 @@
   flip.addEventListener('click', () => {
     const open = flip.getAttribute('aria-pressed') !== 'true';
     flip.setAttribute('aria-pressed', String(open));
+    if (open) preview('hero', 'couple_v1', 0);
     flip.setAttribute('aria-label', open ? 'カードを裏に戻す' : 'カードをめくって質問を見る');
   });
 
@@ -115,11 +119,27 @@
       b.setAttribute('aria-pressed', String(b === button));
     });
     showSample();
+    preview('deck', deckId, sampleIndex);
   }));
   $('#next-question').addEventListener('click', () => {
     sampleIndex = (sampleIndex + 1) % decks[deckId].questions.length;
     showSample();
+    preview('next_question', deckId, sampleIndex);
   });
+  const mobileInstall = $('.mobile-install');
+  const mobileWidth = matchMedia('(max-width: 700px)');
+  function updateInstall() {
+    const heroBottom = $('.hero').getBoundingClientRect().bottom;
+    const closingTop = $('.closing').getBoundingClientRect().top;
+    const inlineActionVisible = [...document.querySelectorAll('[data-store-cta=sample], [data-store-cta=bottom]')].some(action => {
+      const rect = action.getBoundingClientRect();
+      return rect.top >= 0 && rect.bottom <= innerHeight;
+    });
+    mobileInstall.hidden = !mobileWidth.matches || heroBottom > 100 || closingTop < innerHeight || inlineActionVisible;
+  }
+  window.addEventListener('scroll', updateInstall, {passive:true});
+  window.addEventListener('resize', updateInstall);
+  updateInstall();
   setupMotion();
   document.fonts?.ready.then(() => {if(window.ScrollTrigger) ScrollTrigger.refresh();});
   window.addEventListener('load', () => {if(window.ScrollTrigger) ScrollTrigger.refresh();}, {once:true});
