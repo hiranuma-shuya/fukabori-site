@@ -2,11 +2,11 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const source = fs.readFileSync('analytics.js', 'utf8');
-function run(hostname, dnt = '0') {
+function run(hostname, dnt = '0', search = '') {
   const events = [], handlers = {}, scripts = [];
   const client = {register: props => events.push(['register', props]), capture: (...args) => events.push(args)};
   const sandbox = {
-    location:{hostname,pathname:'/fukabori-site/'},navigator:{doNotTrack:dnt},
+    URLSearchParams,location:{hostname,pathname:'/fukabori-site/',search},navigator:{doNotTrack:dnt},
     document:{addEventListener:(event,fn) => handlers[event]=fn,createElement:()=>({}),head:{appendChild:s=>scripts.push(s)}},
     window:{addEventListener:(event,fn)=>handlers[event]=fn,posthog:{init:(key,config)=>config.loaded(client)}}
   };
@@ -14,7 +14,7 @@ function run(hostname, dnt = '0') {
   return {events,handlers,scripts};
 }
 // Development traffic and DNT do not load the SDK or install tracking listeners.
-for (const result of [run('127.0.0.1'),run('hiranuma-shuya.github.io','1')]) {
+for (const result of [run('127.0.0.1'),run('hiranuma-shuya.github.io','1'),run('hiranuma-shuya.github.io','0','?preview=1')]) {
   assert.equal(result.scripts.length,0); assert.equal(Object.keys(result.handlers).length,0);
 }
 const r=run('hiranuma-shuya.github.io');

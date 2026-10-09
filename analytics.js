@@ -2,6 +2,7 @@
   'use strict';
   // Local previews and browser QA must not become acquisition traffic.
   if (location.hostname !== 'hiranuma-shuya.github.io' || !location.pathname.startsWith('/fukabori-site/')) return;
+  if (new URLSearchParams(location.search).get('preview') === '1') return;
   if (navigator.doNotTrack === '1' || window.doNotTrack === '1') return;
   const pending = [];
   let client;
