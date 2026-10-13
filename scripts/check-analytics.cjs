@@ -23,7 +23,7 @@ const click={target:{closest:()=>({dataset:{storeCta:'hero'}})}};
 // An interaction after a delayed SDK download is replayed without blocking navigation.
 r.handlers.click(click); assert.equal(r.events.length,0);
 r.scripts[0].onload();
-assert.equal(r.events[0][0],'register');assert.equal(r.events[0][1].lp_version,'acquisition-v1');
+assert.equal(r.events[0][0],'register');assert.equal(r.events[0][1].lp_version,'lamplight-v1');
 assert.equal(r.events[1][0],'$pageview');
 assert.equal(r.events[2][0],'lp_store_click');
 assert.equal(r.events[2][1].cta_position,'hero');

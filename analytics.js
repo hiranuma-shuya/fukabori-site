@@ -62,7 +62,7 @@
       capture_performance: false,
       loaded: ph => {
         client = ph;
-        ph.register({lp_version: 'acquisition-v1'});
+        ph.register({lp_version: 'lamplight-v1'});
         ph.capture('$pageview');
         pending.splice(0).forEach(args => track(...args));
       }
