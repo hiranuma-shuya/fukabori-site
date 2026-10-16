@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Fukabori（フカボリ）｜大事な話のきっかけをつくる質問カードアプリ</title>
-<meta name="description" content="スマホを真ん中に置いて、質問カードを1枚めくるだけ。恋人・友達・家族と、照れずに本音を話せる会話カードアプリ。全20デッキ・1776問、どのデッキも冒頭15問は無料。iPhone向け。">
+<title>Fukabori（フカボリ）｜深い話ができる質問ゲーム</title>
+<meta name="description" content="深い話を、ゲームみたいに。スマホを真ん中に置いて、質問カードを1枚めくるだけ。恋人・友達・家族と、照れずに本音を話せる質問ゲーム。全20デッキ・1776問。">
 <link rel="canonical" href="https://hiranuma-shuya.github.io/fukabori-site/">
 <meta name="theme-color" content="#0F1420">
 <meta name="color-scheme" content="dark">
@@ -178,6 +178,7 @@
     font-feature-settings: "palt" 1;
   }
   h1 .gold { color: var(--amber); }
+  .kicker { color: var(--amber); font-size: 14px; letter-spacing: .14em; margin: 0 0 18px; }
   h1 .line { display: block; white-space: nowrap; }
   .lead { color: var(--text2); margin-top: 30px; font-size: 17px; line-height: 2.05; max-width: 30em; }
   .lead em { font-style: normal; color: var(--text); }
@@ -355,6 +356,10 @@
   figure.deck-cover figcaption span { display: flex; align-items: center; gap: 7px; margin-top: 6px; color: var(--text2); font-size: 13.5px; letter-spacing: .06em; }
   /* アプリのデッキの色（DeckStyle.accent）を、問数の前の小さな印で */
   figure.deck-cover figcaption span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent, var(--amber)); }
+  .shelf-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .shelf-link { color: var(--amber); font-size: 13px; letter-spacing: .04em; white-space: nowrap; }
+  .shelf-link span { margin-left: 6px; }
+  .shelf-link:hover { text-decoration: underline; text-underline-offset: 4px; }
   .more-decks { margin-top: 48px; color: var(--text2); font-size: 15.5px; line-height: 2; }
   .more-decks b { color: var(--text); font-weight: 700; }
 
@@ -490,6 +495,7 @@
     <div>
       <!-- 1段目は痛み。「話せない」ではなく「きっかけがない」と構造を名指しする。
            機能の説明（会話カードアプリ）はリードに下げる -->
+      <p class="kicker reveal">深い話ができる質問ゲーム</p>
       <h1 class="reveal" style="--d:.08s"><span class="line">大事な話ほど、</span><span class="line gold">きっかけがない。</span></h1>
       <p class="lead reveal" style="--d:.16s">
         <span class="w">スマホを真ん中に置いてめくれば、</span><span class="w">照れくさい本音も</span><span class="w"><em>「ゲームだから」</em>で言える。</span><br>
@@ -509,11 +515,11 @@
         <div class="back-art b2" aria-hidden="true"><img src="img/cards/couple_back.webp" width="966" height="1344" alt=""></div>
         <div class="pcard is-next" aria-hidden="true">
           <span class="deck-name">カップル</span><svg class="stroke" aria-hidden="true"><use href="#stroke"/></svg>
-          <p class="q">わたしの<wbr>機嫌が<wbr>いいときの<wbr>サイン、<wbr>当ててみて</p>
+          <p class="q">最後に<wbr>泣いたのって<wbr>いつ？<wbr>そのこと、<wbr>わたしは<wbr>知ってた？</p>
         </div>
         <div class="pcard is-front">
           <span class="deck-name">カップル</span><svg class="stroke" aria-hidden="true"><use href="#stroke"/></svg>
-          <p class="q">わたしの<wbr>いちばん<wbr>好きな<wbr>食べ物、<wbr>当ててみて</p>
+          <p class="q">わたしの第一印象、<wbr>正直<wbr>どうだった？<wbr>いまと<wbr>どんなふうに<wbr>違う？</p>
         </div>
       </div>
       <div class="deck-meta">
@@ -556,9 +562,9 @@
       <span class="rule"></span>
     </div>
     <div class="screens">
-      <figure class="reveal"><img src="./img/app/screen_home.jpg" alt="デッキを選ぶ画面" width="800" height="1738" loading="lazy" decoding="async"><figcaption>今夜の相手と気分でデッキを選ぶ</figcaption></figure>
-      <figure class="reveal" style="--d:.1s"><img src="./img/app/screen_intro.jpg" alt="実際の質問が読める導入画面" width="800" height="1738" loading="lazy" decoding="async"><figcaption>最初の質問から、会話をはじめる</figcaption></figure>
-      <figure class="reveal" style="--d:.2s"><img src="./img/app/screen_card.jpg" alt="質問カード" width="800" height="1738" loading="lazy" decoding="async"><figcaption>声に出して答える。いやなら飛ばしていい</figcaption></figure>
+      <figure class="reveal"><img src="./img/app/screen_home.jpg" alt="デッキを選ぶ画面" width="800" height="1738" loading="lazy" decoding="async"><figcaption>今夜の相手と気分で、デッキを選ぶ</figcaption></figure>
+      <figure class="reveal" style="--d:.1s"><img src="./img/app/screen_intro.jpg" alt="誰と話すかを選ぶ最初の画面" width="800" height="1738" loading="lazy" decoding="async"><figcaption>誰と話すかを選んで、はじめる</figcaption></figure>
+      <figure class="reveal" style="--d:.2s"><img src="./img/app/screen_card.jpg" alt="質問カード" width="800" height="1738" loading="lazy" decoding="async"><figcaption>声に出して答える。パスもできる</figcaption></figure>
     </div>
   </div>
 </section>
@@ -566,7 +572,7 @@
 <section id="decks" style="padding-top: 0;">
   <div class="wrap">
     <div class="head section-heading reveal">
-      <h2><span class="w">20のデッキ、</span><span class="w">ぜんぶ無料で試せる</span></h2>
+      <h2><span class="w">相手に合わせて、</span><span class="w">20のデッキ</span></h2>
       <span class="rule"></span>
     </div>
 
@@ -574,41 +580,49 @@
          --accent はアプリの DeckStyle.accent と同じ色 -->
     <div class="shelf">
       <div class="shelf-row reveal">
-        <span class="shelf-label">ひとりの夜に</span>
+        <div class="shelf-head"><span class="shelf-label">ふたりの時間</span><a class="shelf-link" data-store-cta="shelf_couple" href="https://apps.apple.com/jp/app/id6794950952?ppid=4c39d165-6158-49cd-8a02-efd05b505383">App Store で見る<span aria-hidden="true">→</span></a></div>
+        <div class="deck-strip">
+          <figure class="deck-cover" style="--accent:#C0707C"><span class="art"><img src="./img/deck/couple_v1.webp" alt="カップル" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>カップル</b>答えるたび、近くなる。<span>97問</span></figcaption></figure>
+          <figure class="deck-cover" style="--accent:#E8A94C"><span class="art"><img src="./img/deck/pastlove_v1.webp" alt="これまでの恋、これからのふたり" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>これまでの恋、これからのふたり</b>昔の話を、いまのふたりのために。<span>85問</span></figcaption></figure>
+          <figure class="deck-cover" style="--accent:#A75F72"><span class="art"><img src="./img/deck/rekindle_v1.webp" alt="あらためて、ふたりで" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>あらためて、ふたりで</b>久しぶりに、ちゃんと話す。<span>101問</span></figcaption></figure>
+          <figure class="deck-cover" style="--accent:#9A8460"><span class="art"><img src="./img/deck/before_living_v1.webp" alt="同棲前会議" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>同棲前会議</b>住む前に、ぜんぶ話そう。<span>94問</span></figcaption></figure>
+          <figure class="deck-cover" style="--accent:#4F8A8B"><span class="art"><img src="./img/deck/marriage_v1.webp" alt="結婚前会議" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>結婚前会議</b>決める前に、ぜんぶ話す。<span>93問</span></figcaption></figure>
+        </div>
+      </div>
+
+      <div class="shelf-row reveal">
+        <div class="shelf-head"><span class="shelf-label">集まりで</span><a class="shelf-link" data-store-cta="shelf_friends" href="https://apps.apple.com/jp/app/id6794950952?ppid=dacbdf2b-6a52-4402-b2d7-bc678d15aaff">App Store で見る<span aria-hidden="true">→</span></a></div>
+        <div class="deck-strip">
+          <figure class="deck-cover" style="--accent:#6E8CC7"><span class="art"><img src="./img/deck/friends_v1.webp" alt="友達" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>友達</b>いつメンの、知らない顔。<span>77問</span></figcaption></figure>
+          <figure class="deck-cover" style="--accent:#C49038"><span class="art"><img src="./img/deck/shimoneta_v1.webp" alt="恋バナ" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>恋バナ</b>笑わせたもん勝ち。<span>74問</span></figcaption></figure>
+          <figure class="deck-cover" style="--accent:#4E8C7A"><span class="art"><img src="./img/deck/bestfriend_v1.webp" alt="親友とサシで" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>親友とサシで</b>十年分を、一晩で。<span>83問</span></figcaption></figure>
+          <figure class="deck-cover" style="--accent:#C26E4A"><span class="art"><img src="./img/deck/icebreak_v1.webp" alt="初対面" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>初対面</b>三分で、打ち解ける。<span>78問</span></figcaption></figure>
+        </div>
+      </div>
+
+      <div class="shelf-row reveal">
+        <div class="shelf-head"><span class="shelf-label">ひとりの夜に</span><a class="shelf-link" data-store-cta="shelf_solo" href="https://apps.apple.com/jp/app/id6794950952?ppid=9de7a005-0032-4d69-b463-dcc5673d8ff3">App Store で見る<span aria-hidden="true">→</span></a></div>
         <div class="deck-strip">
           <figure class="deck-cover" style="--accent:#6F9B7E"><span class="art"><img src="./img/deck/self_v1.webp" alt="セルフケア" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>セルフケア</b>モヤモヤに、名前をつける夜。<span>86問</span></figcaption></figure>
           <figure class="deck-cover" style="--accent:#8B7FA8"><span class="art"><img src="./img/deck/breakup_v1.webp" alt="失恋" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>失恋</b>ちゃんと痛んで、ちゃんと進む。<span>90問</span></figcaption></figure>
-          <figure class="deck-cover" style="--accent:#9668A8"><span class="art"><img src="./img/deck/goals_v1.webp" alt="目標と習慣" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>目標と習慣</b>決意を、続く形に。<span>92問</span></figcaption></figure>
           <figure class="deck-cover" style="--accent:#4A6FA5"><span class="art"><img src="./img/deck/shukatsu_v1.webp" alt="自分を知る" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>自分を知る</b>自分のことが、いちばんわからない。<span>91問</span></figcaption></figure>
+          <figure class="deck-cover" style="--accent:#9668A8"><span class="art"><img src="./img/deck/goals_v1.webp" alt="目標と習慣" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>目標と習慣</b>決意を、続く形に。<span>92問</span></figcaption></figure>
           <figure class="deck-cover" style="--accent:#8A6E5D"><span class="art"><img src="./img/deck/thirties_v1.webp" alt="30代の棚おろし" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>30代の棚おろし</b>気づけば、折り返し。<span>89問</span></figcaption></figure>
         </div>
       </div>
 
       <div class="shelf-row reveal">
-        <span class="shelf-label">ふたりの時間</span>
+        <div class="shelf-head"><span class="shelf-label">家族と</span><a class="shelf-link" data-store-cta="shelf_family" href="https://apps.apple.com/jp/app/id6794950952?ppid=28161e83-39f5-4217-8b26-8f2f5a322d39">App Store で見る<span aria-hidden="true">→</span></a></div>
         <div class="deck-strip">
-          <figure class="deck-cover" style="--accent:#C0707C"><span class="art"><img src="./img/deck/couple_v1.webp" alt="カップル" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>カップル</b>答えるたび、近くなる。<span>97問</span></figcaption></figure>
-          <figure class="deck-cover" style="--accent:#9A8460"><span class="art"><img src="./img/deck/before_living_v1.webp" alt="同棲前会議" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>同棲前会議</b>住む前に、ぜんぶ話そう。<span>94問</span></figcaption></figure>
-          <figure class="deck-cover" style="--accent:#4F8A8B"><span class="art"><img src="./img/deck/marriage_v1.webp" alt="結婚前会議" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>結婚前会議</b>決める前に、ぜんぶ話す。<span>93問</span></figcaption></figure>
-          <figure class="deck-cover" style="--accent:#7A8B5A"><span class="art"><img src="./img/deck/money_v1.webp" alt="お金の会議" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>お金の会議</b>言いにくい話は、カードに言わせる。<span>94問</span></figcaption></figure>
-          <figure class="deck-cover" style="--accent:#5F7D9A"><span class="art"><img src="./img/deck/lifeplan_v1.webp" alt="ふたりの人生設計" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>ふたりの人生設計</b>その選択、ふたりで決めたい。<span>94問</span></figcaption></figure>
-        </div>
-      </div>
-
-      <div class="shelf-row reveal">
-        <span class="shelf-label">家族と・集まりで</span>
-        <div class="deck-strip">
-          <figure class="deck-cover" style="--accent:#B5793F"><span class="art"><img src="./img/deck/kazoku_v1.webp" alt="家族で話す" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>家族で話す</b>家族なのに、意外と知らない。<span>89問</span></figcaption></figure>
           <figure class="deck-cover" style="--accent:#5C7A8F"><span class="art"><img src="./img/deck/parents_v1.webp" alt="親と話す" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>親と話す</b>いつか聞こうを、今日にする。<span>90問</span></figcaption></figure>
+          <figure class="deck-cover" style="--accent:#B5793F"><span class="art"><img src="./img/deck/kazoku_v1.webp" alt="家族で話す" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>家族で話す</b>家族なのに、意外と知らない。<span>89問</span></figcaption></figure>
           <figure class="deck-cover" style="--accent:#D3A02F"><span class="art"><img src="./img/deck/kids_v1.webp" alt="子どもと話す" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>子どもと話す</b>もう一問だけ、聞かせて。<span>85問</span></figcaption></figure>
-          <figure class="deck-cover" style="--accent:#4E8C7A"><span class="art"><img src="./img/deck/bestfriend_v1.webp" alt="親友とサシで" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>親友とサシで</b>十年分を、一晩で。<span>83問</span></figcaption></figure>
-          <figure class="deck-cover" style="--accent:#C26E4A"><span class="art"><img src="./img/deck/icebreak_v1.webp" alt="初対面" width="480" height="720" loading="lazy" decoding="async"></span><figcaption><b>初対面</b>三分で、打ち解ける。<span>78問</span></figcaption></figure>
         </div>
       </div>
     </div>
 
     <p class="more-decks reveal">
-      ほかに <b>友達</b>／<b>子育て会議</b>／<b>恋バナ</b>／<b>これまでの恋、これからのふたり</b>／<b>あらためて、ふたりで</b>。
+      ほかに <b>お金の会議</b>／<b>ふたりの人生設計</b>／<b>子育て会議</b>。どのデッキも、最初の何問かは無料で試せます。
     </p>
   </div>
 </section>
@@ -661,14 +675,15 @@
   }
 
   /* ── ヒーローのカード ──
-     カップルデッキの無料の問いから、浅い順に選んだ7問（deck_data.json の preview_ids）。
-     / は文節の切れ目で、表示時に <wbr> にする */
+     カップルデッキの無料の問いから7問（deck_data.json の preview_ids）。
+     アプリの初回案内・App Store の1枚目と同じ「第一印象」から始める。軽い当てっこより、
+     「そうなんだ」が起きる問いを先に見せる。/ は文節の切れ目で、表示時に <wbr> にする */
   var QS = [
-    [1, 'わたしの/いちばん/好きな/食べ物、/当ててみて'],
-    [1, 'わたしの/機嫌が/いいときの/サイン、/当ててみて'],
-    [1, 'ふたりの/写真から/1枚だけ/残すなら、/どれに/する？'],
-    [2, '最後に/泣いたのって/いつ？/そのこと、/わたしは/知ってた？'],
     [3, 'わたしの第一印象、/正直/どうだった？/いまと/どんなふうに/違う？'],
+    [2, '最後に/泣いたのって/いつ？/そのこと、/わたしは/知ってた？'],
+    [1, 'ふたりの/写真から/1枚だけ/残すなら、/どれに/する？'],
+    [1, 'わたしの/機嫌が/いいときの/サイン、/当ててみて'],
+    [1, 'わたしの/いちばん/好きな/食べ物、/当ててみて'],
     [3, 'ケンカの/あと、/ほんとは/どうして/ほしい？/すぐ/話したい？/それとも/少し/時間が/ほしい？'],
     [4, 'わたしに/まだ/一度も/言ってない、/好きな/ところって/ある？']
   ];
